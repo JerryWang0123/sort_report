@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插入排序法</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .example {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>插入排序法 (Insertion Sort)</h1>
+    <p>插入排序是一種簡單的排序算法。</p>
+
+    <h2>算法原理</h2>
+    <p>插入排序將元素插入到已排序部分的正確位置。</p>
+
+    <h2>JavaScript 實現</h2>
+    <div class="code">
+function insertionSort(arr) {
+    let n = arr.length;
+    for (let i = 1; i < n; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}
+
+// 範例使用
+let array = [64, 34, 25, 12, 22, 11, 90];
+console.log("原始陣列:", array);
+insertionSort(array);
+console.log("排序後:", array);
+    </div>
+
+    <h2>Python 實現</h2>
+    <div class="code">
+def insertion_sort(arr):
+    n = len(arr)
+    for i in range(1, n):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+
+# 範例使用
+array = [64, 34, 25, 12, 22, 11, 90]
+print("原始陣列:", array)
+insertion_sort(array)
+print("排序後:", array)
+    </div>
+
+    <div class="example">
+        <h2>互動範例</h2>
+        <input type="text" id="inputArray" placeholder="輸入數字，用逗號分隔" value="64,34,25,12,22,11,90">
+        <button onclick="sortArray()">排序</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function sortArray() {
+            let input = document.getElementById('inputArray').value;
+            let arr = input.split(',').map(Number);
+            insertionSort(arr);
+            document.getElementById('result').textContent = '排序結果: ' + arr.join(', ');
+        }
+
+        function insertionSort(arr) {
+            let n = arr.length;
+            for (let i = 1; i < n; i++) {
+                let key = arr[i];
+                let j = i - 1;
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = key;
+            }
+        }
+    </script>
+</body>
+</html>

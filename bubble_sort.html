@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>氣泡排序法</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .example {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>氣泡排序法 (Bubble Sort)</h1>
+    <p>氣泡排序是一種簡單的排序算法。</p>
+
+    <h2>算法原理</h2>
+    <p>氣泡排序反覆地比較相鄰元素，如果順序錯誤就交換它們。</p>
+
+    <h2>JavaScript 實現</h2>
+    <div class="code">
+function bubbleSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n-1; i++) {
+        for (let j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                // 交換
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+// 範例使用
+let array = [64, 34, 25, 12, 22, 11, 90];
+console.log("原始陣列:", array);
+bubbleSort(array);
+console.log("排序後:", array);
+    </div>
+
+    <h2>Python 實現</h2>
+    <div class="code">
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+# 範例使用
+array = [64, 34, 25, 12, 22, 11, 90]
+print("原始陣列:", array)
+bubble_sort(array)
+print("排序後:", array)
+    </div>
+
+    <div class="example">
+        <h2>互動範例</h2>
+        <input type="text" id="inputArray" placeholder="輸入數字，用逗號分隔" value="64,34,25,12,22,11,90">
+        <button onclick="sortArray()">排序</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function sortArray() {
+            let input = document.getElementById('inputArray').value;
+            let arr = input.split(',').map(Number);
+            bubbleSort(arr);
+            document.getElementById('result').textContent = '排序結果: ' + arr.join(', ');
+        }
+
+        function bubbleSort(arr) {
+            let n = arr.length;
+            for (let i = 0; i < n-1; i++) {
+                for (let j = 0; j < n-i-1; j++) {
+                    if (arr[j] > arr[j+1]) {
+                        let temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>選擇排序法</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .example {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>選擇排序法 (Selection Sort)</h1>
+    <p>選擇排序是一種簡單的排序算法。</p>
+
+    <h2>算法原理</h2>
+    <p>選擇排序反覆地從未排序部分選擇最小元素，放到已排序部分的末尾。</p>
+
+    <h2>JavaScript 實現</h2>
+    <div class="code">
+function selectionSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n-1; i++) {
+        let minIdx = i;
+        for (let j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        if (minIdx !== i) {
+            [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+        }
+    }
+    return arr;
+}
+
+// 範例使用
+let array = [64, 34, 25, 12, 22, 11, 90];
+console.log("原始陣列:", array);
+selectionSort(array);
+console.log("排序後:", array);
+    </div>
+
+    <h2>Python 實現</h2>
+    <div class="code">
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        min_idx = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        if min_idx != i:
+            arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+
+# 範例使用
+array = [64, 34, 25, 12, 22, 11, 90]
+print("原始陣列:", array)
+selection_sort(array)
+print("排序後:", array)
+    </div>
+
+    <div class="example">
+        <h2>互動範例</h2>
+        <input type="text" id="inputArray" placeholder="輸入數字，用逗號分隔" value="64,34,25,12,22,11,90">
+        <button onclick="sortArray()">排序</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function sortArray() {
+            let input = document.getElementById('inputArray').value;
+            let arr = input.split(',').map(Number);
+            selectionSort(arr);
+            document.getElementById('result').textContent = '排序結果: ' + arr.join(', ');
+        }
+
+        function selectionSort(arr) {
+            let n = arr.length;
+            for (let i = 0; i < n-1; i++) {
+                let minIdx = i;
+                for (let j = i+1; j < n; j++) {
+                    if (arr[j] < arr[minIdx]) {
+                        minIdx = j;
+                    }
+                }
+                if (minIdx !== i) {
+                    [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+                }
+            }
+        }
+    </script>
+</body>
+</html>

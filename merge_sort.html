@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合併排序法</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .example {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>合併排序法 (Merge Sort)</h1>
+    <p>合併排序是一種高效的分治排序算法。</p>
+
+    <h2>算法原理</h2>
+    <p>合併排序使用分治法，將陣列分成兩半，遞歸排序，然後合併兩個已排序的子陣列。</p>
+
+    <h2>JavaScript 實現</h2>
+    <div class="code">
+function mergeSort(arr) {
+    if (arr.length <= 1) return arr;
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    let result = [];
+    let i = 0, j = 0;
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            result.push(left[i++]);
+        } else {
+            result.push(right[j++]);
+        }
+    }
+    return result.concat(left.slice(i)).concat(right.slice(j));
+}
+
+// 範例使用
+let array = [64, 34, 25, 12, 22, 11, 90];
+console.log("原始陣列:", array);
+let sorted = mergeSort(array);
+console.log("排序後:", sorted);
+    </div>
+
+    <h2>Python 實現</h2>
+    <div class="code">
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+# 範例使用
+array = [64, 34, 25, 12, 22, 11, 90]
+print("原始陣列:", array)
+sorted_array = merge_sort(array)
+print("排序後:", sorted_array)
+    </div>
+
+    <div class="example">
+        <h2>互動範例</h2>
+        <input type="text" id="inputArray" placeholder="輸入數字，用逗號分隔" value="64,34,25,12,22,11,90">
+        <button onclick="sortArray()">排序</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function sortArray() {
+            let input = document.getElementById('inputArray').value;
+            let arr = input.split(',').map(Number);
+            let sorted = mergeSort(arr);
+            document.getElementById('result').textContent = '排序結果: ' + sorted.join(', ');
+        }
+
+        function mergeSort(arr) {
+            if (arr.length <= 1) return arr;
+            const mid = Math.floor(arr.length / 2);
+            const left = mergeSort(arr.slice(0, mid));
+            const right = mergeSort(arr.slice(mid));
+            return merge(left, right);
+        }
+
+        function merge(left, right) {
+            let result = [];
+            let i = 0, j = 0;
+            while (i < left.length && j < right.length) {
+                if (left[i] < right[j]) {
+                    result.push(left[i++]);
+                } else {
+                    result.push(right[j++]);
+                }
+            }
+            return result.concat(left.slice(i)).concat(right.slice(j));
+        }
+    </script>
+</body>
+</html>
